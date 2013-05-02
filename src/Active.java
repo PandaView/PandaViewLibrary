@@ -1,6 +1,6 @@
 
 /**
- * TODO Put here a description of what this class does.
+ * This class defines an "active" object, or an object that has a position and is not a background.
  *
  * @author John.
  *         Created Apr 24, 2013.
@@ -20,7 +20,7 @@ public interface Active {
 	 */
 	public void setCoordinate(int x, int y);
 	/**
-	 * moves the coorinate +x to the right and +y down
+	 * moves the coordinate +x to the right and +y down
 	 *
 	 * @param x the distance you want the coordinate moved right
 	 * @param y the distance you want the coordinate moved down

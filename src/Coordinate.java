@@ -11,6 +11,10 @@ public class Coordinate {
 		this.x=c.x;
 		this.y=c.y;
 	}
+	public Coordinate(){
+		this.x=0;
+		this.y=0;
+	}
 	public void setCoordinate(int h, int v){
 		this.x=h;
 		this.y=v;
