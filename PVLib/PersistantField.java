@@ -1,3 +1,4 @@
+
 /**This is an abstract class. It uses the Active interface, but not the Graphical. The class could use Graphical if there is an image
  * or animation associated with the field. However it is recommended not to use the Graphical interface.
  * 

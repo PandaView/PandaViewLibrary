@@ -1,3 +1,4 @@
+
 /**This is that graphical class. It is any active that has an image associated with it. It uses the Active interface.
  *  
  * @author John
