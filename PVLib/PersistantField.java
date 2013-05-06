@@ -1,8 +1,19 @@
 
+/**This is an abstract class. It uses the Active interface, but not the Graphical. The class could use Graphical if there is an image
+ * or animation associated with the field. However it is recommended not to use the Graphical interface.
+ * 
+ * @author John
+ *
+ */
 public abstract class PersistantField implements Active {
 
 	private Coordinate center;
 	private int radius;
+	
+	/**This constructor 
+	 * 
+	 * @param c
+	 */
 	public PersistantField(Coordinate c){
 		this.center = c;
 	}
