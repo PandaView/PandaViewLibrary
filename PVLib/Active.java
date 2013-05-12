@@ -1,9 +1,10 @@
+package PVLib;
 
 /**
  * This class defines an "active" object, or an object that has a position and is not a background.
  *
  * @author John.
- *         Created Apr 24, 2013.
+ *         Created April 24, 2013.
  */
 public interface Active {
 	/**
