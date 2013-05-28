@@ -6,13 +6,13 @@ package PVLib;
  * @author John.
  *         Created April 24, 2013.
  */
-public interface Active {
+public interface PVActive {
 	/**
 	 * This method returns the coordinate object of the Active child
 	 *
 	 * @return the Coordinate of the position of the object
 	 */
-	public Coordinate getCoordinate();
+	public PVCoordinate getCoordinate();
 	/**
 	 * Sets the Coordinate of the active object
 	 *

@@ -6,7 +6,7 @@ package PVLib;
  */
 import java.awt.image.BufferedImage;
 
-public interface Graphical extends Active
+public interface PVGraphical extends PVActive
 {
 	/**
 	 * This method sets the image of a Graphical subclass.

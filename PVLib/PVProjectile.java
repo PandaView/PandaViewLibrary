@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
  * @author John.
  *         Created Apr 24, 2013.
  */
-public abstract class Projectile implements Graphical {
+public abstract class PVProjectile implements PVGraphical {
 
 	@Override
-	public Coordinate getCoordinate() {
+	public PVCoordinate getCoordinate() {
 		// TODO Auto-generated method stub.
 		return null;
 	}
