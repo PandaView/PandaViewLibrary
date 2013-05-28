@@ -1,23 +1,23 @@
 package PVLib;
 
-public class Coordinate
+public class PVCoordinate
 {
 	private int x;
 	private int y;
 
-	public Coordinate(int h, int v)
+	public PVCoordinate(int h, int v)
 	{
 		x = h;
 		y = v;
 	}
 
-	public Coordinate(Coordinate c)
+	public PVCoordinate(PVCoordinate c)
 	{
 		this.x = c.getX();
 		this.y = c.getY();
 	}
 
-	public Coordinate()
+	public PVCoordinate()
 	{
 		x = 0;
 		y = 0;
