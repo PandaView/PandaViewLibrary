@@ -9,10 +9,10 @@ package PVLib;
  * @author John
  * 
  */
-public abstract class PersistentField implements Active
+public abstract class PVPersistentField implements PVActive
 {
 
-	private Coordinate center;
+	private PVCoordinate center;
 	private int radius;
 	
 	/**
@@ -20,21 +20,21 @@ public abstract class PersistentField implements Active
 	 * 
 	 * @param c
 	 */
-	public PersistentField(Coordinate c)
+	public PVPersistentField(PVCoordinate c)
 	{
 		center = c;
 		radius = 0;
 	}
 	
 
-	public PersistentField(Coordinate c, int radius)
+	public PVPersistentField(PVCoordinate c, int radius)
 	{
 		center = c;
 		this.radius = radius;
 	}
 
 	@Override
-	public Coordinate getCoordinate()
+	public PVCoordinate getCoordinate()
 	{
 		return center;
 	}
