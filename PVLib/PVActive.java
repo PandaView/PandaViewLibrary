@@ -1,5 +1,7 @@
 package PVLib;
 
+import java.util.EventListener;
+
 /**
  * This class defines an "active" object, or an object that has a position and is not a background.
  *
@@ -27,4 +29,18 @@ public interface PVActive {
 	 * @param y the distance you want the coordinate moved down
 	 */
 	public void move(int x, int y);
+	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @param ear
+	 */
+	public void setListener(EventListener ear);
+	
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 * @return
+	 */
+	public EventListener getListener();
 }

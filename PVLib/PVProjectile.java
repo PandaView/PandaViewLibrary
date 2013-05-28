@@ -8,36 +8,15 @@ import java.awt.image.BufferedImage;
  * @author John.
  *         Created Apr 24, 2013.
  */
-public abstract class PVProjectile implements PVGraphical {
+public abstract class PVProjectile extends PVGraphical {
 
-	@Override
-	public PVCoordinate getCoordinate() {
-		// TODO Auto-generated method stub.
-		return null;
+	public PVProjectile(){
+		
 	}
-
-	@Override
-	public void setCoordinate(int x, int y) {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
 	public void move(int x, int y) {
 		// TODO Auto-generated method stub.
 
 	}
 
-	@Override
-	public void setImage(BufferedImage img) {
-		// TODO Auto-generated method stub.
-
-	}
-
-	@Override
-	public BufferedImage getImage() {
-		// TODO Auto-generated method stub.
-		return null;
-	}
-
+	
 }
