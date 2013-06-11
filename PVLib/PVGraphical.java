@@ -1,13 +1,16 @@
 package PVLib;
 
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JComponent;
 
 /**This is that graphical class. It is any active that has an image associated with it. It uses the Active interface.
  *  
  * @author John
  */
-public abstract class PVGraphical implements PVActive
+public abstract class PVGraphical extends JComponent implements PVActive 
 {
 	private BufferedImage img;
 	private PVCoordinate coord;
@@ -73,4 +76,8 @@ public abstract class PVGraphical implements PVActive
 		this.coord = coord;
 	}
 	
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(this.img,this.coord.getX(), this.coord.getY(),null);
+	}
 }

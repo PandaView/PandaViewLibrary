@@ -35,7 +35,24 @@ public abstract class PVExistence extends JFrame
 		this.bkg = createPVBackground();
 		this.actives = createPVActives();
 		this.endPoint = new PVCoordinate();
+		addGraphicals();
 
+	}
+	/**
+	 * TODO Put here a description of what this method does.
+	 *
+	 */
+	private void addGraphicals() {
+		if (actives!=null && actives.size()>0){
+			for (int i=0;i<actives.size();i++){
+				PVActive temp = actives.get(i);
+				if (temp.isGraphical()){
+					this.container.add((PVGraphical) temp);
+				}
+			}
+		}
+		this.container.paintComponents(this.getGraphics());
+		
 	}
 	/**
 	 * TODO Put here a description of what this method does.
@@ -94,6 +111,7 @@ public abstract class PVExistence extends JFrame
 	 * Returns the value of the field called 'layout'.
 	 * @return Returns the layout.
 	 */
+	@Override
 	public GridBagLayout getLayout() {
 		return this.layout;
 	}

@@ -43,4 +43,8 @@ public interface PVActive {
 	 * @return
 	 */
 	public EventListener getListener();
+	/**
+	 * 
+	 */
+	public boolean isGraphical();
 }
