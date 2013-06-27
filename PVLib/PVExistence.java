@@ -43,9 +43,9 @@ public abstract class PVExistence extends JFrame
 	 *
 	 */
 	private void addGraphicals() {
-		if (actives!=null && actives.size()>0){
-			for (int i=0;i<actives.size();i++){
-				PVActive temp = actives.get(i);
+		if (this.actives!=null && this.actives.size()>0){
+			for (int i=0;i<this.actives.size();i++){
+				PVActive temp = this.actives.get(i);
 				if (temp.isGraphical()){
 					this.container.add((PVGraphical) temp);
 				}
