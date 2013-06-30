@@ -1,6 +1,7 @@
 package PVLib;
 
 import java.awt.Container;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
@@ -29,15 +30,24 @@ public abstract class PVExistence extends JFrame
 	public PVExistence(String appName)
 	{
 		super(appName);
+		this.bkg = createPVBackground();
+		setContentPane( bkg );
 		this.container = this.getContentPane();
 		this.layout = new GridBagLayout();
 		this.container.setLayout(this.layout);
-		this.bkg = createPVBackground();
 		this.actives = createPVActives();
-		this.endPoint = new PVCoordinate();
+		this.endPoint = new PVCoordinate(500,500);
 		addGraphicals();
+		setVisible(true);
+		setLocationRelativeTo(null);
+		pack();
+		setSize(endPoint.getX(), endPoint.getY());
+		repaint();
+		
+		
 
 	}
+
 	/**
 	 * TODO Put here a description of what this method does.
 	 *
@@ -47,13 +57,23 @@ public abstract class PVExistence extends JFrame
 			for (int i=0;i<this.actives.size();i++){
 				PVActive temp = this.actives.get(i);
 				if (temp.isGraphical()){
-					this.container.add((PVGraphical) temp);
+					
+					this.container.add((PVGraphical) temp, getGBConstraints(temp));
 				}
 			}
 		}
-		this.container.paintComponents(this.getGraphics());
-		
+				
 	}
+	private GridBagConstraints getGBConstraints(PVActive temp) {
+		// TODO Auto-generated method stub
+		GridBagConstraints cts = new GridBagConstraints();
+		
+		cts.gridx = 0;
+		cts.gridy = 0;
+		
+		return cts;
+	}
+
 	/**
 	 * TODO Put here a description of what this method does.
 	 *
@@ -70,9 +90,10 @@ public abstract class PVExistence extends JFrame
 	
 	@Override
 	public void setSize(int x, int y){
-		this.container.setSize(x,y);
+		super.setSize(x,y);
 		this.endPoint.setX(x);
 		this.endPoint.setY(y);
+		super.setLocationRelativeTo(null);
 	}
 	/**
 	 * TODO Put here a description of what this method does.

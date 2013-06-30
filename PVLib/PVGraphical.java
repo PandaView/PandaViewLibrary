@@ -2,7 +2,9 @@ package PVLib;
 
 
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.EventListener;
 
 import javax.swing.JComponent;
 
@@ -10,10 +12,11 @@ import javax.swing.JComponent;
  *  
  * @author John
  */
-public abstract class PVGraphical extends JComponent implements PVActive 
+public class PVGraphical extends JComponent implements PVActive 
 {
-	private BufferedImage img;
-	private PVCoordinate coord;
+	private BufferedImage 	img;
+	private PVCoordinate 	coord;
+	private EventListener	listener;
 	
 	/**
 	 * TODO Put here a description of what this constructor does.
@@ -22,6 +25,7 @@ public abstract class PVGraphical extends JComponent implements PVActive
 	public PVGraphical(){
 		this.img = null;
 		this.coord = new PVCoordinate(0,0);
+		this.listener = null;
 	}
 	
 	/**
@@ -64,7 +68,7 @@ public abstract class PVGraphical extends JComponent implements PVActive
 	 * Returns the value of the field called 'coord'.
 	 * @return Returns the coord.
 	 */
-	public PVCoordinate getCoord() {
+	public PVCoordinate getCoordinate() {
 		return this.coord;
 	}
 
@@ -75,9 +79,37 @@ public abstract class PVGraphical extends JComponent implements PVActive
 	public void setCoord(PVCoordinate coord) {
 		this.coord = coord;
 	}
+
+	public void setCoordinate(int x, int y) {
+		this.coord.setX(x);
+		this.coord.setY(y);
+		
+	}
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(this.img,this.coord.getX(), this.coord.getY(),null);
+	}
+
+
+
+
+
+
+	public boolean isGraphical() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void setListener(EventListener ear) {
+		this.listener = ear;
+		
+	}
+
+	@Override
+	public EventListener getListener() {
+		// TODO Auto-generated method stub
+		return this.listener;
 	}
 }

@@ -12,7 +12,7 @@ import javax.swing.JComponent;
  * @author John
  */
 @SuppressWarnings("serial")
-public abstract class PVBackground extends JComponent
+public class PVBackground extends JComponent
 {
 	//the image to get displayed as the background
 	private BufferedImage bkg;
@@ -55,9 +55,13 @@ public abstract class PVBackground extends JComponent
 		return this.bkg;
 	}
 
-	@Override
+	//@Override
 	/**
 	 * a method to paint the image. May be implemented, not yet determined.
 	 */
-	protected abstract void paintComponent(Graphics g);
+	
+	protected void paintComponent(Graphics g){
+		g.drawImage(this.bkg, 0, 0, null);
+	}
+	
 }
