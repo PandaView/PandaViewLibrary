@@ -1,9 +1,11 @@
 package PVLib;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import javax.swing.JComponent;
 
+import javax.swing.JComponent;
 /**
  * 
  * This class provides a background for a gui. It is meant to be stationary, but can be moved and changed. 
@@ -11,9 +13,7 @@ import javax.swing.JComponent;
  *
  * @author John
  */
-@SuppressWarnings("serial")
-public class PVBackground extends JComponent
-{
+public class PVBackground extends JComponent{
 	//the image to get displayed as the background
 	private BufferedImage bkg;
 	
@@ -26,6 +26,7 @@ public class PVBackground extends JComponent
 	public PVBackground(BufferedImage img)
 	{
 		this.bkg = img;
+		setBounds( new Rectangle( 0, 0 , img.getWidth() , img.getHeight() ) );
 	}
 	/**
 	 * 
@@ -44,6 +45,7 @@ public class PVBackground extends JComponent
 	 */
 	public void setImage(BufferedImage img){
 		this.bkg = img;
+		setBounds( new Rectangle( 0, 0 , img.getWidth() , img.getHeight() ) );
 	}
 	/**
 	 * 
@@ -54,14 +56,10 @@ public class PVBackground extends JComponent
 	public BufferedImage getImage(){
 		return this.bkg;
 	}
-
-	//@Override
-	/**
-	 * a method to paint the image. May be implemented, not yet determined.
-	 */
 	
-	protected void paintComponent(Graphics g){
-		g.drawImage(this.bkg, 0, 0, null);
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(this.bkg, 0,  0,null);
 	}
-	
+
 }

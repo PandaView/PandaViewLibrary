@@ -1,11 +1,19 @@
 package PVLib;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  * 
@@ -30,22 +38,36 @@ public abstract class PVExistence extends JFrame
 	public PVExistence(String appName)
 	{
 		super(appName);
+		
+		this.container = getContentPane();
+		this.container.setLayout( null );
+		this.endPoint = new PVCoordinate();
 		this.bkg = createPVBackground();
-		setContentPane( bkg );
-		this.container = this.getContentPane();
-		this.layout = new GridBagLayout();
-		this.container.setLayout(this.layout);
 		this.actives = createPVActives();
-		this.endPoint = new PVCoordinate(500,500);
+		
+		
 		addGraphicals();
-		setVisible(true);
+		addBg();
+
 		setLocationRelativeTo(null);
 		pack();
-		setSize(endPoint.getX(), endPoint.getY());
+		setVisible(true);
+		
 		repaint();
-		
-		
 
+
+	}
+
+	private void fixGraphics() {
+		JLabel nothing = new JLabel();
+		container.add(nothing);
+		
+		
+		
+	}
+
+	private void addBg() {
+		this.container.add( this.bkg );
 	}
 
 	/**
@@ -57,8 +79,7 @@ public abstract class PVExistence extends JFrame
 			for (int i=0;i<this.actives.size();i++){
 				PVActive temp = this.actives.get(i);
 				if (temp.isGraphical()){
-					
-					this.container.add((PVGraphical) temp, getGBConstraints(temp));
+					this.container.add((PVGraphical) temp);
 				}
 			}
 		}
