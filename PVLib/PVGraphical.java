@@ -21,6 +21,7 @@ public class PVGraphical extends JComponent implements PVActive
 	private BufferedImage 	img;
 	private PVCoordinate 	coord;
 	private EventListener	listener;
+	private String			ID;
 	
 	/**
 	 * TODO Put here a description of what this constructor does.
@@ -117,5 +118,17 @@ public class PVGraphical extends JComponent implements PVActive
 	public EventListener getListener() {
 		// TODO Auto-generated method stub
 		return this.listener;
+	}
+
+	@Override
+	public String getID() {
+		// TODO Auto-generated method stub
+		return this.ID;
+	}
+
+	@Override
+	public void setID(String ID) {
+		this.ID = ID;
+		
 	}
 }

@@ -35,7 +35,7 @@ public interface PVActive {
 	 *
 	 * @param ear
 	 */
-	public void setListener(EventListener ear);
+	public void setListener( EventListener ear );
 	
 	/**
 	 * TODO Put here a description of what this method does.
@@ -47,4 +47,8 @@ public interface PVActive {
 	 * 
 	 */
 	public boolean isGraphical();
+	
+	public String getID();
+	
+	public void setID( String ID );
 }
