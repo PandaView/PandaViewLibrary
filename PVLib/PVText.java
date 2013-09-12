@@ -5,35 +5,65 @@ import java.util.EventListener;
 
 public class PVText implements PVActive {
 	
-	String text_str;
-	int font_size;
-	Font font;
-	String ID;
+	PVCoordinate 	pos;
+	String 			text_str;
+	int 			font_size;
+	Font 			font;
+	String 			ID;
 	
 
 	
-	public PVText(String text_str, int font_size, Font font) {
+	public PVText(String text_str, int font_size, Font font, PVCoordinate coord) {
 		this.text_str = text_str;
 		this.font_size = font_size;
+		this.pos = coord;
 		this.font = font;
 	}
+	public PVText(String text_str, int font_size, PVCoordinate coord) {
+		this.text_str = text_str;
+		this.font_size = font_size;
+		this.pos = coord;
+		this.font = Font.getFont( Font.SANS_SERIF );
+	}
+	
+	public PVText(String text_str, PVCoordinate coord) {
+		this.text_str = text_str;
+		this.font_size = 16;
+		this.pos = coord;
+		this.font = Font.getFont( Font.SANS_SERIF );
+	}
+	
+	public PVText(String text_str) {
+		this.text_str = text_str;
+		this.font_size = 16;
+		this.pos = new PVCoordinate();
+		this.font = Font.getFont( Font.SANS_SERIF );
+	}
+	
+	public String getText() {
+		return this.text_str;
+	}
 
+	public void setText(String str) {
+		this.text_str = str;
+	}
+	
 	@Override
 	public PVCoordinate getCoordinate() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.pos;
 	}
 
 	@Override
 	public void setCoordinate(int x, int y) {
-		// TODO Auto-generated method stub
+		this.pos.setX(x);
+		this.pos.setY(y);
 
 	}
 
 	@Override
 	public void move(int x, int y) {
-		// TODO Auto-generated method stub
-
+		this.pos.setX( this.pos.getX() + x );
+		this.pos.setY( this.pos.getY() + y );
 	}
 
 	@Override
@@ -50,13 +80,11 @@ public class PVText implements PVActive {
 
 	@Override
 	public boolean isGraphical() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
 		return ID;
 	}
 
