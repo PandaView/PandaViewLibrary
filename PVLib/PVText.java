@@ -83,5 +83,9 @@ public class PVText {
 		this.pos.setX( this.pos.getX() + x );
 		this.pos.setY( this.pos.getY() + y );
 	}
+	public int getFontSize() {
+		
+		return this.font_size;
+	}
 
 }

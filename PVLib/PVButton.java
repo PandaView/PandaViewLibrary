@@ -10,10 +10,12 @@ import sun.awt.image.ToolkitImage;
 
 public class PVButton extends PVGraphical {
 
-	PVText 			str;
-	BufferedImage 	bg;
-	PVCoordinate	size;
-	boolean			resize = false;
+	private 			PVText 			str;
+	private 			BufferedImage 	bg;
+	private 			PVCoordinate	size;
+	private 			boolean			resize = false;
+	private 			int 			textX;
+	private 			int 			textY;
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate pos ) {
 		super( bg );
@@ -21,6 +23,7 @@ public class PVButton extends PVGraphical {
 		this.bg = bg;
 		this.str = new PVText( text );
 		this.size = new PVCoordinate( this.bg.getWidth(), this.bg.getHeight() );
+		alignText();
 	}
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate size, PVCoordinate pos ) {
@@ -29,6 +32,7 @@ public class PVButton extends PVGraphical {
 		this.bg = bg;
 		this.str = new PVText( text );
 		this.size = size;
+		alignText();
 	}
 	
 	public void setTextColor( Color color ) {
@@ -39,10 +43,16 @@ public class PVButton extends PVGraphical {
 		this.resize = true;
 	}
 	
+	public void alignText() {
+		this.textX = ( this.size.getX() ) / 2 ;
+		this.textY = ( this.size.getY() / 2 ) + ( this.str.getFontSize() / 4 ) ;
+	}
+	
 	@Override
 	public void setFont( Font font ) {
 		this.str.setFont( font );
 	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent( g );
@@ -56,7 +66,8 @@ public class PVButton extends PVGraphical {
 		super.setBounds( super.getX(), super.getY(), this.size.getX(), this.size.getY() );
 		g.setColor( this.str.getColor() );
 		g.setFont( this.str.getFont() );
-		g.drawString( this.str.getText(), super.getX() + 10 , super.getY() + 20 );
+		System.out.println( "x: "+this.textX+" y: "+this.textY );
+		g.drawString( this.str.getText(), super.getX() + this.textX , this.textY );
 	}
 	
 }

@@ -58,14 +58,6 @@ public abstract class PVExistence extends JFrame
 
 	}
 
-	private void fixGraphics() {
-		JLabel nothing = new JLabel();
-		container.add(nothing);
-		
-		
-		
-	}
-
 	private void addBg() {
 		this.container.add( this.bkg );
 	}
