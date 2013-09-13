@@ -1,13 +1,15 @@
 package PVLib;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.util.EventListener;
 
-public class PVText implements PVActive {
+public class PVText {
 	
 	PVCoordinate 	pos;
 	String 			text_str;
 	int 			font_size;
+	Color			font_color = Color.BLACK;
 	Font 			font;
 	String 			ID;
 	
@@ -48,49 +50,38 @@ public class PVText implements PVActive {
 		this.text_str = str;
 	}
 	
-	@Override
+	public void setFontSize( float size ) {
+		this.font = this.font.deriveFont(size);	
+	}
+	
+	public void setFont( Font font ) {
+		this.font = font;
+	}
+	
+	public Font getFont() {
+		return this.font;
+	}
+	public void setColor( Color clr ) {
+		this.font_color = clr;
+	}
+	
+	public Color getColor() {
+		return this.font_color;
+	}
+	
 	public PVCoordinate getCoordinate() {
 		return this.pos;
 	}
 
-	@Override
 	public void setCoordinate(int x, int y) {
 		this.pos.setX(x);
 		this.pos.setY(y);
 
 	}
 
-	@Override
 	public void move(int x, int y) {
 		this.pos.setX( this.pos.getX() + x );
 		this.pos.setY( this.pos.getY() + y );
-	}
-
-	@Override
-	public void setListener(EventListener ear) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public EventListener getListener() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isGraphical() {
-		return true;
-	}
-
-	@Override
-	public String getID() {
-		return ID;
-	}
-
-	@Override
-	public void setID( String id ) {
-		this.ID = id;		
 	}
 
 }
