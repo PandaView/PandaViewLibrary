@@ -1,12 +1,13 @@
 package PVLib;
 
+import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-
-import sun.awt.image.ToolkitImage;
 
 public class PVButton extends PVGraphical {
 
@@ -19,19 +20,23 @@ public class PVButton extends PVGraphical {
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate pos ) {
 		super( bg );
-		super.setCoord(pos);
+		super.setCoordinate(pos);
+		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		this.bg = bg;
 		this.str = new PVText( text );
 		this.size = new PVCoordinate( this.bg.getWidth(), this.bg.getHeight() );
+		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
 		alignText();
 	}
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate size, PVCoordinate pos ) {
 		super( bg );
-		super.setCoord(pos);
+		super.setCoordinate(pos);
+		enableEvents(AWTEvent.MOUSE_EVENT_MASK);
 		this.bg = bg;
 		this.str = new PVText( text );
 		this.size = size;
+		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
 		alignText();
 	}
 	
@@ -56,18 +61,39 @@ public class PVButton extends PVGraphical {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent( g );
+		//super.setBounds( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX(), this.size.getY() );
+		System.out.println( "repainting button at :"+super.getCoordinate().getX()+ ", "+ super.getCoordinate().getY() );
 		if ( this.resize ) {
-			g.drawImage( this.bg, super.getX(), super.getY(), this.size.getX(), this.size.getY(), null);
+			g.drawImage( this.bg, 0, 0, this.size.getX(), this.size.getY(), null);
 		}
 		else {
 			
-			g.drawImage( this.bg, super.getX(), super.getY(), null);
+			
+			g.drawImage( this.bg, 0, 0, null);
 		}
-		super.setBounds( super.getX(), super.getY(), this.size.getX(), this.size.getY() );
+		
 		g.setColor( this.str.getColor() );
 		g.setFont( this.str.getFont() );
-		System.out.println( "x: "+this.textX+" y: "+this.textY );
-		g.drawString( this.str.getText(), super.getX() + this.textX , this.textY );
+		g.drawString( this.str.getText(), this.textX , this.textY );
+	}
+	
+	@Override
+	protected void processEvent( AWTEvent e){
+		
+		if ( super.getListener() != null ){
+			if ( e.getID() == MouseEvent.MOUSE_PRESSED ){
+				System.out.println( "Mouse Pressed" );
+				super.getListener().actionPerformed( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null ));
+			}
+		}
+		
+	}
+	@Override
+	public void move( int x, int y ) {
+		System.out.println( "button at : "+ (super.getCoordinate().getX() + x )+", "+( super.getCoordinate().getY() + y ) );
+		super.setCoordinate( super.getCoordinate().getX() + x , super.getCoordinate().getY() + y );
+		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
+		//repaint();
 	}
 	
 }

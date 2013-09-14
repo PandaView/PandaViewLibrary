@@ -20,7 +20,7 @@ public class PVGraphical extends JComponent implements PVActive
 {
 	private BufferedImage 	img;
 	private PVCoordinate 	coord;
-	private EventListener	listener;
+	private ActionListener	listener;
 	private String			ID;
 	
 	/**
@@ -86,7 +86,7 @@ public class PVGraphical extends JComponent implements PVActive
 	 * Sets the field called 'coord' to the given value.
 	 * @param coord The coord to set.
 	 */
-	public void setCoord(PVCoordinate coord) {
+	public void setCoordinate(PVCoordinate coord) {
 		this.coord = coord;
 	}
 
@@ -99,23 +99,21 @@ public class PVGraphical extends JComponent implements PVActive
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent( g );
-		g.drawImage(this.img,this.coord.getX(), this.coord.getY(),null);
+		g.drawImage(this.img, 0, 0, null);
 	}
 
 
 	public boolean isGraphical() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
-	public void setListener(EventListener ear) {
-		this.listener = ear;
-		
+	public void setListener( ActionListener ear) {
+		this.listener = ear;		
 	}
 
 	@Override
-	public EventListener getListener() {
+	public ActionListener getListener() {
 		// TODO Auto-generated method stub
 		return this.listener;
 	}
@@ -130,5 +128,12 @@ public class PVGraphical extends JComponent implements PVActive
 	public void setID(String ID) {
 		this.ID = ID;
 		
+	}
+	
+	@Override
+	public void move( int x, int y ) {
+		this.coord.setX( this.coord.getX() + x );
+		this.coord.setY( this.coord.getY() + y );
+		setBounds( new Rectangle( this.coord.getX(), this.coord.getY(), this.img.getWidth() , this.img.getHeight() ) );
 	}
 }

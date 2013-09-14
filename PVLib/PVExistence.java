@@ -1,5 +1,6 @@
 package PVLib;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -39,6 +40,7 @@ public abstract class PVExistence extends JFrame
 	{
 		super(appName);
 		
+		
 		this.container = getContentPane();
 		this.container.setLayout( null );
 		this.endPoint = new PVCoordinate();
@@ -77,21 +79,7 @@ public abstract class PVExistence extends JFrame
 		}
 				
 	}
-	private GridBagConstraints getGBConstraints(PVActive temp) {
-		// TODO Auto-generated method stub
-		GridBagConstraints cts = new GridBagConstraints();
-		
-		cts.gridx = 0;
-		cts.gridy = 0;
-		
-		return cts;
-	}
 
-	/**
-	 * TODO Put here a description of what this method does.
-	 *
-	 * @return
-	 */
 	protected abstract ArrayList<PVActive> createPVActives();
 	/**
 	 * TODO Put here a description of what this method does.
@@ -188,5 +176,12 @@ public abstract class PVExistence extends JFrame
 	protected PVBackground getPVBackground(){
 		return this.bkg;
 	}
+	
+	@Override
+    public void processEvent(AWTEvent event)
+    {
+        System.out.println("override " + event);
+        super.processEvent(event);
+    }
 
 }

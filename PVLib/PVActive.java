@@ -1,6 +1,6 @@
 package PVLib;
 
-import java.util.EventListener;
+import java.awt.event.ActionListener;
 
 /**
  * This class defines an "active" object, or an object that has a position and is not a background.
@@ -35,14 +35,14 @@ public interface PVActive {
 	 *
 	 * @param ear
 	 */
-	public void setListener( EventListener ear );
+	public void setListener( ActionListener ear );
 	
 	/**
 	 * TODO Put here a description of what this method does.
 	 *
 	 * @return
 	 */
-	public EventListener getListener();
+	public ActionListener getListener();
 	/**
 	 * 
 	 */
