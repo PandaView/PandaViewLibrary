@@ -61,14 +61,13 @@ public class PVButton extends PVGraphical {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent( g );
-		//super.setBounds( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX(), this.size.getY() );
-		System.out.println( "repainting button at :"+super.getCoordinate().getX()+ ", "+ super.getCoordinate().getY() );
+		
 		if ( this.resize ) {
+			
 			g.drawImage( this.bg, 0, 0, this.size.getX(), this.size.getY(), null);
 		}
 		else {
-			
-			
+						
 			g.drawImage( this.bg, 0, 0, null);
 		}
 		
@@ -82,7 +81,6 @@ public class PVButton extends PVGraphical {
 		
 		if ( super.getListener() != null ){
 			if ( e.getID() == MouseEvent.MOUSE_PRESSED ){
-				System.out.println( "Mouse Pressed" );
 				super.getListener().actionPerformed( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null ));
 			}
 		}
@@ -90,10 +88,8 @@ public class PVButton extends PVGraphical {
 	}
 	@Override
 	public void move( int x, int y ) {
-		System.out.println( "button at : "+ (super.getCoordinate().getX() + x )+", "+( super.getCoordinate().getY() + y ) );
 		super.setCoordinate( super.getCoordinate().getX() + x , super.getCoordinate().getY() + y );
 		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
-		//repaint();
 	}
 	
 }

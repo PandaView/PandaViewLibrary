@@ -55,9 +55,59 @@ public abstract class PVExistence extends JFrame
 		pack();
 		setVisible(true);
 		
-		repaint();
+		repaint(); 
+		
+		run();
 
 
+	}
+
+	public void run() {
+
+		int target_fps = 60;
+		//repaint in ms
+		double repaint_time = 1000/target_fps;
+		//is running?
+		boolean running = true;
+		//time last render
+		long lastTimer = System.currentTimeMillis();
+		//re pack
+		
+		Thread t = new Thread(new Runnable() {
+
+			int target_fps = 60;
+			//repaint in ms
+			double repaint_time = 1000/target_fps;
+			//is running?
+			boolean running = true;
+			//time last render
+			long lastTimer = System.currentTimeMillis();
+			
+			@Override
+			public void run() {
+				while( running ){
+					
+					
+					if ( ( System.currentTimeMillis() - lastTimer ) >= repaint_time ) {
+						repaint();
+					}
+					else {
+						try {
+							Thread.sleep(5);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+							running = false;
+							System.out.println( " Stopped Running " );		
+						}						
+					}
+				}				
+			}			
+		});
+
+		t.setDaemon(true);
+		t.start();
+		
+		
 	}
 
 	private void addBg() {
@@ -180,7 +230,7 @@ public abstract class PVExistence extends JFrame
 	@Override
     public void processEvent(AWTEvent event)
     {
-        System.out.println("override " + event);
+        //System.out.println("override " + event);
         super.processEvent(event);
     }
 

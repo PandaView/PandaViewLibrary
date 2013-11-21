@@ -88,11 +88,13 @@ public class PVGraphical extends JComponent implements PVActive
 	 */
 	public void setCoordinate(PVCoordinate coord) {
 		this.coord = coord;
+		setBounds( new Rectangle( this.coord.getX(), this.coord.getY(), img.getWidth() , img.getHeight() ) );
 	}
 
 	public void setCoordinate(int x, int y) {
 		this.coord.setX(x);
 		this.coord.setY(y);
+		setBounds( new Rectangle( this.coord.getX(), this.coord.getY(), this.img.getWidth() , this.img.getHeight() ) );
 		
 	}
 	
