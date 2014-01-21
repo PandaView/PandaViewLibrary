@@ -13,10 +13,12 @@ public class PVButton extends PVGraphical {
 
 	private 			PVText 			str;
 	private 			BufferedImage 	bg;
+	private				BufferedImage	cur_bg;
 	private 			PVCoordinate	size;
 	private 			boolean			resize = false;
 	private 			int 			textX;
 	private 			int 			textY;
+	private				BufferedImage	next_bg = null;
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate pos ) {
 		super( bg );
@@ -27,6 +29,7 @@ public class PVButton extends PVGraphical {
 		this.size = new PVCoordinate( this.bg.getWidth(), this.bg.getHeight() );
 		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
 		alignText();
+		this.cur_bg = bg;
 	}
 	
 	public PVButton( BufferedImage bg, String text, PVCoordinate size, PVCoordinate pos ) {
@@ -38,10 +41,15 @@ public class PVButton extends PVGraphical {
 		this.size = size;
 		super.setBounds( new Rectangle( super.getCoordinate().getX(), super.getCoordinate().getY(), this.size.getX() , this.size.getY() ) );
 		alignText();
+		this.cur_bg = bg;
 	}
 	
 	public void setTextColor( Color color ) {
 		this.str.setColor( color );
+	}
+	
+	public void setTextSize( int size ) {
+		this.str.setFontSize( size );
 	}
 	
 	public void enableBackgroundResize() {
@@ -49,7 +57,7 @@ public class PVButton extends PVGraphical {
 	}
 	
 	public void alignText() {
-		this.textX = ( this.size.getX() ) / 2 ;
+		this.textX = ( this.size.getX() ) / 4 ;
 		this.textY = ( this.size.getY() / 2 ) + ( this.str.getFontSize() / 4 ) ;
 	}
 	
@@ -64,11 +72,11 @@ public class PVButton extends PVGraphical {
 		
 		if ( this.resize ) {
 			
-			g.drawImage( this.bg, 0, 0, this.size.getX(), this.size.getY(), null);
+			g.drawImage( this.cur_bg, 0, 0, this.size.getX(), this.size.getY(), null);
 		}
 		else {
 						
-			g.drawImage( this.bg, 0, 0, null);
+			g.drawImage( this.cur_bg, 0, 0, null);
 		}
 		
 		g.setColor( this.str.getColor() );
@@ -78,14 +86,24 @@ public class PVButton extends PVGraphical {
 	
 	@Override
 	protected void processEvent( AWTEvent e){
-		
-		if ( super.getListener() != null ){
-			if ( e.getID() == MouseEvent.MOUSE_PRESSED ){
-				super.getListener().actionPerformed( new ActionEvent( this, ActionEvent.ACTION_PERFORMED, null ));
-			}
+		if( super.getListener() != null){
+			super.getListener().actionPerformed(new ActionEvent(this, e.getID(), e.paramString()) );
 		}
 		
+		if( this.next_bg != null ){
+			if ( e.getID() == MouseEvent.MOUSE_ENTERED ){
+				this.cur_bg = this.next_bg;
+			}
+			if ( e.getID() == MouseEvent.MOUSE_EXITED ){
+				this.cur_bg = this.bg;
+			}
+		}
 	}
+	
+	public void setAlternate( BufferedImage img ){
+		this.next_bg = img;
+	}
+	
 	@Override
 	public void move( int x, int y ) {
 		super.setCoordinate( super.getCoordinate().getX() + x , super.getCoordinate().getY() + y );

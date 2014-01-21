@@ -25,21 +25,21 @@ public class PVText {
 		this.text_str = text_str;
 		this.font_size = font_size;
 		this.pos = coord;
-		this.font = Font.getFont( Font.SANS_SERIF );
+		this.font = new Font("SansSerif", Font.PLAIN , 12);
 	}
 	
 	public PVText(String text_str, PVCoordinate coord) {
 		this.text_str = text_str;
 		this.font_size = 16;
 		this.pos = coord;
-		this.font = Font.getFont( Font.SANS_SERIF );
+		this.font = new Font("SansSerif", Font.PLAIN , 12);
 	}
 	
 	public PVText(String text_str) {
 		this.text_str = text_str;
 		this.font_size = 16;
 		this.pos = new PVCoordinate();
-		this.font = Font.getFont( Font.SANS_SERIF );
+		this.font = new Font("SansSerif", Font.PLAIN , 12);
 	}
 	
 	public String getText() {

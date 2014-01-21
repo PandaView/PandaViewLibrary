@@ -15,6 +15,11 @@ import javax.swing.JComponent;
  */
 public class PVBackground extends JComponent{
 	//the image to get displayed as the background
+	
+	private int paint_x = 0;
+	private int paint_y = 0;
+	private int once = 0;
+	
 	private BufferedImage bkg;
 	
 	/**
@@ -57,9 +62,15 @@ public class PVBackground extends JComponent{
 		return this.bkg;
 	}
 	
+	public void setCenter(int x, int y){
+
+		this.paint_x =  x - (this.bkg.getWidth()/2);
+		this.paint_y =  y - (this.bkg.getHeight()/2);
+
+	}
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(this.bkg, 0,  0,null);
+		g.drawImage(this.bkg, paint_x,  paint_y, null);
 	}
 
 }
